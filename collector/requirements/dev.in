@@ -1,0 +1,7 @@
+-c prod.txt
+pytest
+mypy
+flake8
+black
+isort
+invoke

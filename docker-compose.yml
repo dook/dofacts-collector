@@ -1,0 +1,25 @@
+version: "3.4"
+
+services:
+  collector:
+    container_name: collector_dev
+    image: collector_dev
+    build:
+      context: ./collector
+      target: collector_dev
+    ports:
+      - "8001:80"
+    volumes:
+      - ./collector:/app
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    restart: on-failure
+
+  postgres:
+    image: postgres:12
+    env_file:
+      - .env
+    ports:
+      - "5436:5432"
